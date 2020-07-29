@@ -41,11 +41,10 @@ void fastio()
 //to find witness paths
 void dijkstra(long long int src, long long int tot_max)
 {
-   
    //reinitialising the values changed during previous query
     for(auto k:workset)
    {
-   // cerr<<k<<" ";
+   
       d_dist[k]=-1;
       hops[k]=0;
       visited[k]=false;
@@ -58,11 +57,10 @@ void dijkstra(long long int src, long long int tot_max)
     workset.insert(src);
     while(!d_pq.empty())
     {
-       long long int v = d_pq.top().second; 
+        long long int v = d_pq.top().second; 
         long long int w = d_pq.top().first; 
         d_pq.pop();
-      
-       visited[v]=true;
+        visited[v]=true;
         if(d_dist[v] > tot_max)   // break because no witness path after that
               return;
         if(hops[v] > 5)    //if hops more, not traversing
@@ -70,7 +68,7 @@ void dijkstra(long long int src, long long int tot_max)
        for (auto jj:adj[v])
         {
             if(contracted[jj.second] || visited[jj.second])
-                 continue;
+                     continue;
            
             if( (d_dist[jj.second] > d_dist[v] + jj.first) || d_dist[jj.second]==-1)
             {
@@ -87,7 +85,7 @@ void dijkstra(long long int src, long long int tot_max)
 void contract(long long int v)
 {
     contracted[v]=1;
-      long long int in_max=0;
+    long long int in_max=0;
     long long int out_max=0; 
     
      for(auto jj:adj[v])
@@ -108,9 +106,9 @@ void contract(long long int v)
     for(auto jj:adjr[v])
     {
         if(contracted[jj.second])
-             continue;
+               continue;
          //dijkstra for finding witness path criteria
-          dijkstra(jj.second, tot_max);
+         dijkstra(jj.second, tot_max);
         
         for(auto kk:adj[v])
         {
@@ -134,12 +132,7 @@ void contract(long long int v)
 
 //preprocessing part
 void preprocessing()
-{
-  
-    
-    
-    
-    
+{  
     //computing the importance function for each node
     for(int i=1;i<=n;i++)
     {   worksetD.insert(i);
@@ -159,7 +152,7 @@ void preprocessing()
         {
             long long int a1=imp_pq.top().first;
             long long new_val=((adj[b].size()*adjr[b].size())-adj[b].size()-adjr[b].size())+2*(adj[b].size()+adjr[b].size()); 
-           new_val=new_val+2*delNeighbors[b];
+            new_val=new_val+2*delNeighbors[b];
             if(new_val>a1)
            {
                 imp_pq.push({new_val,b});
@@ -257,8 +250,6 @@ long long int bidijkstra()
        
        
     }
-  
-    
     
    return estimate;
 
