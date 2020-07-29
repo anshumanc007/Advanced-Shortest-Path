@@ -40,7 +40,6 @@ void fastio()
 
 void dijkstra(long long int src, long long int tot_max)
 {
-   
 //reinitialising the values changed during previous query
     for(auto k:workset)
    {
@@ -57,11 +56,11 @@ void dijkstra(long long int src, long long int tot_max)
     workset.insert(src);
     while(!d_pq.empty())
     {
-       long long int v = d_pq.top().second; 
+        long long int v = d_pq.top().second; 
         long long int w = d_pq.top().first; 
         d_pq.pop();
-      
-       visited[v]=true;
+        visited[v]=true;
+        
         if(d_dist[v] > tot_max)    // break because no witness path after that
               return;
         if(hops[v] > 20)          //don't find after a certain number of hops
@@ -69,7 +68,7 @@ void dijkstra(long long int src, long long int tot_max)
        for (auto jj:adj[v])
         {
             if(contracted[jj.second] || visited[jj.second])
-                 continue;
+                    continue;
            
             if( (d_dist[jj.second] > d_dist[v] + jj.first) || d_dist[jj.second]==-1)
             {
@@ -137,10 +136,6 @@ void contract(long long int v)
 void preprocessing()
 {
   
-    
-    
-    
-    
     //computing the importance function for each node
     for(int i=1;i<=n;i++)
     {   worksetD.insert(i);
@@ -160,7 +155,7 @@ void preprocessing()
         {
             long long int a1=imp_pq.top().first;
             long long new_val=14*((adj[b].size()*adjr[b].size())-adj[b].size()-adjr[b].size())+25*(adj[b].size()+adjr[b].size()); 
-           new_val=new_val+20*delNeighbors[b]+50*Level[b];
+            new_val=new_val+20*delNeighbors[b]+50*Level[b];
             if(new_val>a1)
            {
                 imp_pq.push({new_val,b});
@@ -216,13 +211,13 @@ long long int bidijkstra()
                 {
                     long long int edge_wt=jj.first;
                     long long int u=jj.second;
-                     estimate=min(estimate,f_dist[v]+r_dist[u]+edge_wt);
+                    estimate=min(estimate,f_dist[v]+r_dist[u]+edge_wt);
                      
                     if(!f_vis[u] && f_dist[v]+edge_wt<f_dist[u] && order[u]>order[v] )
                     {
                          worksetD.insert(u);
-                        f_dist[u]=f_dist[v]+edge_wt;
-                        f_pq.push({f_dist[u],u});
+                         f_dist[u]=f_dist[v]+edge_wt;
+                         f_pq.push({f_dist[u],u});
                     }
                 }
                 estimate=min(estimate,f_dist[v]+r_dist[v]);
