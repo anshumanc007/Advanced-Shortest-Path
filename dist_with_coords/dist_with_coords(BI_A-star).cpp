@@ -64,12 +64,8 @@ void computing_average_virtual_function()
         x=(x)>>1;
         v_for[i]=-x;
         v_back[i]=x;
-        
     }
 }
-
-
-
 //bidirectional Astar for faster output
 long long int Astar()
 {
@@ -126,9 +122,8 @@ long long int Astar()
                 }
             if(r_vis[v])
                 break;
-        
-        
         }
+        
         //backward_iteration
          if(!r_pq.empty())
         {
@@ -136,11 +131,10 @@ long long int Astar()
             long long int v=r_pq.top().second;
             r_pq.pop();
             r_vis[v]=true;
-             
-            
+
                 for (auto jj:adjr[v])
                 {
-                     long long int u=jj.second;
+                    long long int u=jj.second;
                     long long int edge_wt=jj.first+v_back[u]-v_back[v];
                    
                     if(!r_vis[u] && r_dist[v]+edge_wt<r_dist[u])
@@ -150,12 +144,10 @@ long long int Astar()
                         r_pq.push({r_dist[v]+edge_wt,u});
                     }
                 }
-          if(f_vis[v])
-              break;
-           
+            if(f_vis[v])
+               break;
+     
         }
-        
-        
         
     }
   
@@ -169,10 +161,7 @@ long long int Astar()
              estimate=min(f_dist[i]+r_dist[jj.second]+jj.first+v_for[src]-v_for[i]+v_back[dest]-v_back[jj.second],estimate);
         }
     }
-    
-    
-   
-    
+
    return estimate;
 
 }
