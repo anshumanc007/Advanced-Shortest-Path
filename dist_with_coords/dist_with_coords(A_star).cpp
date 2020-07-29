@@ -34,9 +34,8 @@ void computing_virtual_function()
     for(int i=1;i<=n;i++)
     {
     
-    unsigned long long cc=(((location[dest].first-location[i].first))*((location[dest].first-location[i].first)))+
+           unsigned long long cc=(((location[dest].first-location[i].first))*((location[dest].first-location[i].first)))+
                  (((location[dest].second-location[i].second))*((location[dest].second-location[i].second)));
-        
            v_for[i]=sqrt(cc);
        
     }
@@ -89,17 +88,10 @@ long long int Astar()
                         f_pq.push({f_dist[v]+edge_wt,u});
                     }
                 }
-           
-        
-                
-         
-        
-        
+
     }
   
-  
-     return -1;
-  
+     return -1;  
 
 }
 
@@ -133,8 +125,7 @@ int main()
             continue;
         }
         long long int ans=Astar();
-        
-        
+
             cout<<ans<<"\n";
     }
    
