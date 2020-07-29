@@ -19,6 +19,7 @@ long long int f_dist[MAX];  // distance measured from src in forward dijkstra
 long long int r_dist[MAX]; // distance measured from dest in backward dijkstra
 bool f_vis[MAX];  // visited array for forward dijkstra
 bool r_vis[MAX];  // visited array for backward dijkstra
+
 //For faster input and output
 void fastio()
 {
@@ -76,7 +77,7 @@ long long int bidijkstra()
                     {
                         worksetD.insert(u);
                         f_dist[u]=f_dist[v]+edge_wt;
-                         estimate=min(estimate,f_dist[v]+r_dist[u]+edge_wt);
+                        estimate=min(estimate,f_dist[v]+r_dist[u]+edge_wt);
                         f_pq.push({f_dist[u],u});
                     }
                 }
@@ -93,12 +94,13 @@ long long int bidijkstra()
             long long int v=r_pq.top().second;
             r_pq.pop();
             r_vis[v]=true;
-             minr=wt;             
+            minr=wt;             
             
                 for (auto jj:adjr[v])
                 {
                     long long int edge_wt=jj.first;
                     long long int u=jj.second;
+                    
                     if(!r_vis[u] && r_dist[v]+edge_wt<r_dist[u])
                     {
                         worksetD.insert(u);
@@ -115,8 +117,6 @@ long long int bidijkstra()
         if(minf+minr>=estimate)
            break;
     }
-  
-    
     
    return estimate;
 
